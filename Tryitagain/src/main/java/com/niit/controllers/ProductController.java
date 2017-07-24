@@ -1,14 +1,22 @@
 package com.niit.controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.niit.configuration.DBConfiguration;
 import com.niit.dao.ProductDaoImpl;
@@ -28,19 +36,36 @@ import com.niit.service.ProductServiceImpl;
 
 	public String getproductform(Model model)
 	{
-		model.addAttribute("product",new Product());
 		List<Category> categories=productService.getAllCategories();
-		   model.addAttribute("categories");
+		   model.addAttribute("categories",categories);
+		model.addAttribute("product",new Product());
+		
 		
 		return "productform";
 		
 	}
 	@RequestMapping("/saveProduct")
 
-	public String SaveProduct(@ModelAttribute(name="product") Product product)
+	public String SaveProduct(@Valid @ModelAttribute(name="product") Product product,BindingResult result,Model model)
 	{
+		if(result.hasErrors())
+			{
+			List<Category> categories=productService.getAllCategories();
+			   model.addAttribute("categories",categories);
+				return "productform";
+			}
 		productService.saveProduct(product);
 		
+		MultipartFile image=product.getImage();
+		
+		Path path= Paths.get("C:\\Users\\user\\git\\ecommerce\\Tryitagain\\src\\main\\webapp\\WEB-INF\\images\\"+product.getId()+".png");
+		
+		try {
+			image.transferTo(new File(path.toString()));
+		} catch (IllegalStateException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return"success";
 		}
 	
@@ -53,15 +78,16 @@ import com.niit.service.ProductServiceImpl;
 		
 	}
 	
-	@RequestMapping("/all/product/viewproduct/{id}")
+	@RequestMapping("/viewproduct/{id}")
 	
 	public String getProductById(@PathVariable int id,Model model)
 	{
 		Product product= productService.getProductById(id);
+		model.addAttribute("product",product);
 		return "viewproduct";
 	}
 	
-   @RequestMapping("/admin/deleteproduct/{id}")
+   @RequestMapping("/deleteproduct/{id}")
 	
 	public String deleteProduct(@PathVariable int id)
 	{
@@ -69,27 +95,44 @@ import com.niit.service.ProductServiceImpl;
 		return "redirect:/getallproducts";
 	}
 
-   @RequestMapping("/admin/geteditform/{id}")
+   @RequestMapping("/geteditform/{id}")
    
    public String getEditForm(@PathVariable int id,Model model)
    {
-   
-   Product product = productService.getProductById(id);
-   
-   model.addAttribute("productObj,product");
-   
-   List<Category> categories=productService.getAllCategories();
-   model.addAttribute("categories");
+	   Product product = productService.getProductById(id);
+	   model.addAttribute("productObj",product);
+	List<Category> categories=productService.getAllCategories();
+	model.addAttribute("categories",categories);
+  
    return "editform";
    }
    
-   @RequestMapping("/admin/product/editproduct")
-   
-   public String editProduct(@ModelAttribute(name="productObj") Product product)
+   @RequestMapping("/editproduct")  
+   public String editProduct(@Valid @ModelAttribute(name="productObj") Product product,BindingResult result,Model model)
    {
-	   productService.editProduct(product);
+	   if(result.hasErrors())
+		{
+		List<Category> categories=productService.getAllCategories();
+		   model.addAttribute("categories",categories);
+		
+		   return "editform";
+		}
 	   
-	   return "redirect:/all/product/getallproducts";
+	   productService.updateProduct(product);
+	   
+	   MultipartFile image=product.getImage();
+		
+		Path path= Paths.get("C:\\Users\\user\\git\\ecommerce\\Tryitagain\\src\\main\\webapp\\WEB-INF\\images\\"+product.getId()+".png");
+	   
+	   
+	   try {
+		image.transferTo(new File(path.toString()));
+	} catch (IllegalStateException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	   return "success";
    }
    
 }

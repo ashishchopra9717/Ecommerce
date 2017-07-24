@@ -11,15 +11,16 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping("/aboutus")
+	public  String about()
+	{
+		return "aboutus";
+	}
+	
 	@RequestMapping("/index")
-	public  String navbar()
+	public  String homePage1()
 	{
 		return "index";
 	}
 	
-	@RequestMapping("/carousal")
-	public  String carousel()
-	{
-		return "carousal";
-	}
 }

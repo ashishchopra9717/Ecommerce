@@ -6,6 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Product 
@@ -13,8 +18,23 @@ public class Product
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
 private int Id;
+@NotEmpty(message="Required field needs to be filled")
 private String productName;
+@Min(value=50)
+private int price;
+@Min(value=1)
+private int quantity;
+@NotEmpty(message="Required field needs to be filled")
+private String description;
 
+@Transient
+private MultipartFile image;
+public MultipartFile getImage() {
+	return image;
+}
+public void setImage(MultipartFile image) {
+	this.image = image;
+}
 @ManyToOne
 
 @JoinColumn(name="cid")
@@ -56,8 +76,5 @@ public String getDescription() {
 public void setDescription(String description) {
 	this.description = description;
 }
-private int price;
-private int quantity;
-private String description;
 
 }

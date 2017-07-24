@@ -5,22 +5,25 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" >
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Angular Js -->
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+<!-- JQuery -->
+<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+
+<link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+
 <title>Homepage</title>
 </head>
 <body>
-<!-- include javascript, jQuery FIRST -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
- <nav class="navbar navbar-default" >
+ <nav style="background:black"class="navbar" >
   <div class="container">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapsed" data-target="#collapse-example" aria expanded="false">
 
@@ -30,97 +33,91 @@
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
 </button>
-</div>
-<div class="navbar-header">
-<a class=""navbar-brand" href="#">
-<img src="/images/Envirotas.PNG" alt="GO" height="30px" width="30" style="margin-top:10px";>
-</a>
-</div>
+</div><!-- end container -->
+
+
 
 <div class="collapse navbar-collapse" id="collapse-example">
 
 <ul class="nav navbar-nav" style="clear:left;">
+<img src="images/logo.png" alt="GO" height="100px" width="300px" style="margin-top:10px" align="center">	
 	<li class="active">
-		<a href="index.jsp"><span class="glyphicon glyphicon-home"></span> Home</a>
+		<a href="index"><span class="glyphicon glyphicon-home"></span> Home</a>
 	</li>
 <span class="sr-only">You are in Homepage</span>
 
 <li>
-		<a href="aboutus.jsp">About Us</a>
+		<a href="aboutus">About Us</a>
 	</li>
 <span class="sr-only">About Us</span>
 
 <li class="dropdown">
-	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories<strong class="caret"></strong></a>
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-phone"> Mobile<strong class="caret"></strong></a>
 
 		<ul class="dropdown-menu">
 		<li>
-			<a href="#"><span class="glyphicon glyphicon-grain">Organic Food</a>
+			<a href="#">Mobile</a>
 		</li>
 		<li>
-			<a href="#">Health & Wellness</a>
+			<a href="#">Smartphones</a>
 		</li>
 		<li>
-			<a href="#">Beauty Care</a>
+			<a href="#">Tablets</a>
 		</li>
 		<li class="divider"></li>
 		
 		<li class="dropdown-header">More Services</li>
 		<li>
-			<a href="#">Home & Garden</a>
+			<a href="#">Wearables</a>
 		</li>
 		<li>
-			<a href="#">Clothing</a>
+			<a href="#">Other Phones</a>
 		</li>
 		<li>
-			<a href="#">Baby & Kids</a>
+			<a href="#">Accessories</a>
 		</li>
 	</ul>
 </li>
 
 
 <li class="dropdown">
-	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Offers<strong class="caret"></strong></a>
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#">TV&AV<strong class="caret"></strong></a>
 
 		<ul class="dropdown-menu">
 		<li>
-			<a href="#">Web-Design</a>
+			<a href="#">QLED TV</a>
 		</li>
 		<li>
-			<a href="#">Web Development</a>
+			<a href="#">UHD TV</a>
 		</li>
 		<li>
-			<a href="#">Web Development</a>
+			<a href="#">FULL HD TV</a>
 		</li>
 		<li class="divider"></li>
 		
 		<li class="dropdown-header">More Services</li>
 		<li>
-			<a href="#">Web Creation</a>
+			<a href="#">HD TV</a>
 		</li>
 	</ul>
 </li>
 
 
 <li class="dropdown">
-	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Services <strong class="caret"></strong></a>
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-sd-video"> MEMMORY&STORAGE<strong class="caret"></strong></a>
 
 		<ul class="dropdown-menu">
 		<li>
-			<a href="#">Web-Design</a>
+			<a href="#">SSD</a>
 		</li>
 		<li>
-			<a href="#">Web Development</a>
+			<a href="#">Portable SSD</a>
 		</li>
 		<li>
-			<a href="#">Web Development</a>
+			<a href="#">Memory Card</a>
 		</li>
 		<li class="divider"></li>
 		
-		<li class="dropdown-header">More Services</li>
-		<li>
-			<a href="#">Web Creation</a>
-		</li>
 	</ul>
 </li>
 </ul>
@@ -133,6 +130,8 @@
 </form>
 
 <ul class="nav navbar-nav navbar-right">
+	<li><input type="button" class="btn btn-info" value="View Products" onclick="location.href = 'getallproducts';"></li>
+	<li><input type="button" class="btn btn-warning" value="Add Product" onclick="location.href = 'getproductform';"></li>
 	<li class="dropdown">
 	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> My Account<strong class="caret"></strong></a>
 
@@ -149,7 +148,6 @@
 	</ul>
 </li>
 </ul>
-</div>
 </div>
 </nav>
 </body>

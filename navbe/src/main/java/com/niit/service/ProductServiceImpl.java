@@ -15,7 +15,7 @@ import com.niit.model.Product;
 public class ProductServiceImpl implements ProductService
 {
 	
-	ProductServiceImpl()
+	public ProductServiceImpl()
 	{
 		System.out.println("Product Service Impl object created");
 	}
@@ -46,14 +46,16 @@ public Product getProductById(int id) {
 	return productDao.getProductById(id);
 }
 
-public void editProduct(Product product) 
-{
-	productDao.editProduct(product);
-	
-}
+
 
 public List<Category> getAllCategories() 
 {
 	return productDao.getAllCategories();
+}
+
+public void updateProduct(Product product) 
+{
+	productDao.editProduct(product);
+	
 }
 }

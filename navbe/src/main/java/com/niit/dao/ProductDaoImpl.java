@@ -17,6 +17,11 @@ public class ProductDaoImpl implements ProductDao
 @Autowired
 private SessionFactory sessionFactory;
 
+public ProductDaoImpl()
+{
+	System.out.println("ProductDaoImpl object is created");
+}
+
 public void saveProduct(Product product)
 {
 	Session session=sessionFactory.getCurrentSession();
