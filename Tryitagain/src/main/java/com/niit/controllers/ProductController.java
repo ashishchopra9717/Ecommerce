@@ -2,14 +2,14 @@ package com.niit.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,19 +18,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.niit.configuration.DBConfiguration;
-import com.niit.dao.ProductDaoImpl;
 import com.niit.model.Category;
 import com.niit.model.Product;
 import com.niit.service.ProductService;
-import com.niit.service.ProductServiceImpl;
 
 @Controller
 	public class ProductController 
 	{
-	ApplicationContext context=new AnnotationConfigApplicationContext(DBConfiguration.class,ProductDaoImpl.class,ProductServiceImpl.class);
-    
-    ProductService productService=(ProductService)context.getBean("productServiceImpl");
+	@Autowired
+    ProductService productService;
     
 	@RequestMapping("/getproductform")
 
@@ -66,7 +62,7 @@ import com.niit.service.ProductServiceImpl;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return"success";
+		return"productlist";
 		}
 	
 	@RequestMapping("/getallproducts")
@@ -78,7 +74,7 @@ import com.niit.service.ProductServiceImpl;
 		
 	}
 	
-	@RequestMapping("/viewproduct/{id}")
+	@RequestMapping("/viewproduct{id}")
 	
 	public String getProductById(@PathVariable int id,Model model)
 	{
@@ -92,10 +88,22 @@ import com.niit.service.ProductServiceImpl;
 	public String deleteProduct(@PathVariable int id)
 	{
 		 productService.deleteProduct(id);
+		 
+		 Path path= Paths.get("C:\\Users\\user\\git\\ecommerce\\Tryitagain\\src\\main\\webapp\\WEB-INF\\images\\"+id+".png");
+		 
+		 if(Files.exists(path))
+		 {
+			 try {
+				Files.delete(path);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		 }
+				
 		return "redirect:/getallproducts";
 	}
 
-   @RequestMapping("/geteditform/{id}")
+   @RequestMapping("/geteditform{id}")
    
    public String getEditForm(@PathVariable int id,Model model)
    {
@@ -132,7 +140,7 @@ import com.niit.service.ProductServiceImpl;
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
-	   return "success";
+	   return "redirect:/getallproducts";
    }
    
 }

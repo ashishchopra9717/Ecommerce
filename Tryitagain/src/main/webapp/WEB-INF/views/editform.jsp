@@ -16,7 +16,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<title>Insert title here</title>
+<title>Edit Form</title>
 </head>
 <body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -24,7 +24,8 @@
 
 <jsp:include page="header.jsp"></jsp:include>
 
-<form:form action="editform" method="post" modelAttribute="productObj" enctype="multipart/form-data">
+<form:form action="editproduct" method="post" modelAttribute="productObj" enctype="multipart/form-data">
+	
 	<div class="form-group">
 	<form:hidden path="id" class="form-control"/>
 	</div>
@@ -72,7 +73,7 @@
 	
 	<br>
 	
-	<input type="submit" value="Add Product">
+	<input type="submit" value="Edit Product">
 </form:form>
 </body>
 </html>

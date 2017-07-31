@@ -1,5 +1,6 @@
 package com.niit.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,41 @@ Authorities authorities= new Authorities();
 		session.save(customer);
 		
 		
+	}
+
+	public User validateUsername(String username)
+	{
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from User where username=?");
+		
+		query.setString(0,username);
+		
+		User user=(User)query.uniqueResult();
+		
+		return user;
+	}
+
+	public Customer validateEmail(String email) 
+	{
+		Session session=sessionFactory.getCurrentSession();
+		
+		Query query=session.createQuery("from Customer where email=?");
+		
+		query.setString(0,email);
+		
+		Customer customer=(Customer)query.uniqueResult();
+		
+		return customer;
+	}
+
+	public Customer getCustomerByUsername(String username) 
+	{
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from customer where user.username=?");
+		
+		query.setString(0, username);
+		Customer customer=(Customer)query.uniqueResult();
+		return customer;
 	}
 
 }

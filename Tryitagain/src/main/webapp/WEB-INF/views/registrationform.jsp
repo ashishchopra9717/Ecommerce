@@ -26,14 +26,37 @@
 <c:url value="/savecustomer" var="url">
 </c:url>
 
+<div class="panel panel-primary" style="height: 554px; width: 800px; margin:auto">
+
+<div class="panel-heading" style="text-align:center; font-size:25px">Register Here</div>
+
+<div class="panel-body" style="background:#e8f3f8">
 <form:form action="${url}" modelAttribute="customer">
 
-<div class="boxed" style="border:1px solid">
+<div class="row">
+<div class="col-lg-4">
+<p class="text-primary" style="text-align:left ;font-size:25px">Personal Details</p>
+
+
+<div class="form-group">
+<form:label path="user.username">Enter User Name</form:label>
+<p style="color:red">${duplicateUsername}</p>
+<form:input path="user.username"/>
+<form:errors path="user.username" cssStyle="color:red"></form:errors>
+</div>
+
+<div class="form-group">
+<form:label path="user.password">Enter Password</form:label>
+<form:input path="user.password"/>
+<form:errors path="user.password" cssStyle="color:red"></form:errors>
+</div>
+
 <div class="form-group">
 <form:label path="firstname">Enter First Name</form:label>
 <form:input path="firstname"/>
 <form:errors path="firstname" cssStyle="color:red"></form:errors>
 </div>
+
 
 <div class="form-group">
 <form:label path="lastname">Enter Last Name</form:label>
@@ -44,6 +67,7 @@
 <div class="form-group">
 <form:label path="email">Enter Email Id</form:label>
 <form:input path="email"/>
+<p style="color:red">${duplicateEmail}</p>
 <form:errors path="email" cssStyle="color:red"></form:errors>
 </div>
 
@@ -54,21 +78,9 @@
 </div>
 </div>
 
-<div class="boxed" style="border:1px solid">
-<div class="form-group">
-<form:label path="user.username">Enter User Name</form:label>
-<form:input path="user.username"/>
-<form:errors path="user.username" cssStyle="color:red"></form:errors>
-</div>
+<div class="col-lg-4">
+<p class="text-primary" style="text-align:left ;font-size:25px">Billing Address</p>
 
-<div class="form-group">
-<form:label path="user.password">Enter Password</form:label>
-<form:input path="user.password"/>
-<form:errors path="user.password" cssStyle="color:red"></form:errors>
-</div>
-</div>
-
-<div class="boxed" style="border:1px solid">
 <div class="form-group">
 <form:label path="billingAddress.streetname">Enter Street Name</form:label>
 <form:input path="billingAddress.streetname"/>
@@ -106,7 +118,10 @@
 </div>
 </div>
 
-<div class="boxed" style="border:1px solid">
+<div class="col-lg-4">
+<p class="text-primary" style="text-align:left ;font-size:25px">Shipping Address</p>
+
+
 <div class="form-group">
 <form:label path="shippingAddress.streetname">Enter Street Name</form:label>
 <form:input path="shippingAddress.streetname"/>
@@ -143,11 +158,12 @@
 <form:errors path="shippingAddress.zipcode" cssStyle="color:red"></form:errors>
 </div>
 </div>
-
-<input type="submit" value="Register">
-
+<input type="submit" class="btn btn-primary btn-block"  value="Register" >
+</div>
 
 </form:form>
+</div>
+</div>
 
 </body>
 </html>

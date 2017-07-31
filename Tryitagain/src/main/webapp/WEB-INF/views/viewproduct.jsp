@@ -10,18 +10,30 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="panel panel-primary" style="height: 545px; width: 750px; margin:auto">
+		<div class="panel-heading" style="text-align:center;font-size:25px">${product.productName}</div>
+		<div class="panel-body" style="background:#e8f3f8">
 
-<table>
-<b>Details about Project </b>
+
+<table style="border: 1px solid">
 <tr>
 <c:url value="/images/${product.id }.png" var="imageUrl"></c:url>
-<td><img src="${imageUrl }" height="70" width="70"></td>
-<tr>
+<td rowspan="2"><img src="${imageUrl }" height="270" width="270"></td>
 <td>Product Name</td><td>${product.productName}</td>
-</tr>
+
 <tr>
 <td>Product Description</td><td>${product.description}</td>
 </tr>
 </table>
+
+<br>
+Enter Units<input type="text" name="units">
+
+<c:url value="/cart/addtocart/${product.id}_${units}" var="cart">
+</c:url>
+
+<a href="${cart}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+</div>
+</div>
 </body>
 </html>

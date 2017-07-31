@@ -28,7 +28,7 @@ public class Customer {
 	@Email
 	private String email;
 	@NotEmpty
-	@Size(max=10,min=10)
+	@Size(max=10,min=10,message="Please enter a Valid Mobile Number")
 	private String phone;
 	
 	@OneToOne(cascade=CascadeType.ALL)
@@ -46,9 +46,24 @@ public class Customer {
 	@Valid
 	private ShippingAddress shippingAddress;
 	
-	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="cart_id")
+	@Valid
+	private Cart cart;
 
 	
+	public Cart getCart() {
+		return cart;
+	}
+
+
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}

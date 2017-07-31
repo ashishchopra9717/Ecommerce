@@ -15,12 +15,13 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
+	@NotEmpty
 	@Column(unique = true, nullable = false)
 	private String username;
 
 	@NotEmpty
 	private String password;
-
+	
 	private Boolean enabled;
 
 	@OneToOne(mappedBy = "user")

@@ -1,27 +1,46 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+    <%@ page isELIgnored="false" %>
 <html>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1" >
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!-- Angular Js -->
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- JQuery -->
 <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+
 
 <link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+
 
 <title>Homepage</title>
 </head>
 <body>
+<nav style="background:black;margin:0px"class="navbar" >
+
+<c:url value="/index" var="home"></c:url>
+<c:url value="images/logo.png" var="logo"></c:url>
+<a class="navbar-brand" href="${home}"><img src="${logo}" alt="GO" height="100px" width="300px" style="margin-top:10px"></a>
+
+<form class="navbar-form pull-right">
+<input type="text" class="form-control" placeholder="Search here" style="width: 700px;margin:20px 0px">
+<button type="submit" class="btn-btn-default "><span class="glyphicon glyphicon-search"></span></button>
+</form>
+
+</nav>
 
  <nav style="background:black"class="navbar" >
   <div class="container">
@@ -39,20 +58,21 @@
 
 <div class="collapse navbar-collapse" id="collapse-example">
 
-<ul class="nav navbar-nav" style="clear:left;">
-<img src="images/logo.png" alt="GO" height="100px" width="300px" style="margin-top:10px" align="center">	
+<ul class="nav navbar-nav" style="margin-left:150px">	
+	
 	<li class="active">
-		<a href="index"><span class="glyphicon glyphicon-home"></span> Home</a>
+		<a href="${home}"><span class="glyphicon glyphicon-home" style="color:white"></span> <font color="white">Home</font></a>
 	</li>
 <span class="sr-only">You are in Homepage</span>
 
 <li>
-		<a href="aboutus">About Us</a>
+	<c:url value="/aboutus" var="about"></c:url>
+		<a href="${about}"><font color="white">About Us</font></a>
 	</li>
 <span class="sr-only">About Us</span>
 
 <li class="dropdown">
-	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-phone"> Mobile<strong class="caret"></strong></a>
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-phone" style="color:white"><font color="white"> Mobile</font><strong class="caret"></strong></a>
 
 		<ul class="dropdown-menu">
 		<li>
@@ -81,7 +101,7 @@
 
 
 <li class="dropdown">
-	<a class="dropdown-toggle" data-toggle="dropdown" href="#">TV&AV<strong class="caret"></strong></a>
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><font color="white">TV&AV</font><strong class="caret" style="color:white"></strong></a>
 
 		<ul class="dropdown-menu">
 		<li>
@@ -104,7 +124,7 @@
 
 
 <li class="dropdown">
-	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-sd-video"> MEMMORY&STORAGE<strong class="caret"></strong></a>
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-sd-video" style="color:white"> <font color="white">MEMMORY&STORAGE</font><strong class="caret" style="color:white"></strong></a>
 
 		<ul class="dropdown-menu">
 		<li>
@@ -120,31 +140,54 @@
 		
 	</ul>
 </li>
-</ul>
 
-
-<form class="navbar-form pull-left">
-
-<input type="text" class="form-control" placeholder="Search the object" style="width: 200px;">
-<button type="submit" class="btn-btn-default "><span class="glyphicon glyphicon-search"></span></button>
-</form>
-
-<ul class="nav navbar-nav navbar-right">
-	<li><input type="button" class="btn btn-info" value="View Products" onclick="location.href = 'getallproducts';"></li>
-	<li><input type="button" class="btn btn-warning" value="Add Product" onclick="location.href = 'getproductform';"></li>
+	<c:url value="getallproducts" var="allproduct"></c:url>
+	<a href="${allproduct}">View Products</a>
+	
+	<li> 
+	<c:url value="/admin/getproductform" var="productform"></c:url>
+	<c:if test="${pageContext.request.userPrincipal.name!=null}">
+	
+	<security:authorize access="hasRole('ROLE_ADMIN')">
+	<a href="${productform}">Add Product</a>
+	</security:authorize>
+	</c:if>
+	</li>
+	
+	<li>
+		<c:if test="${pageContext.request.userPrincipal.name!=null }">
+			<a href="">Welcome ${pageContext.request.userPrincipal.name }</a>
+		</c:if>
+	</li>
+	
 	<li class="dropdown">
-	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> My Account<strong class="caret"></strong></a>
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" style="color:white"></span><font color="white"> My Account</font><strong class="caret" style="color:white"></strong></a>
 
 		<ul class="dropdown-menu">
 		<li>
-			<a href="#"><span class="glyphicon glyphicon-refresh"></span></span> Update Profile</a>
+			<a href="#"><span class="glyphicon glyphicon-refresh"></span>Update Profile</a>
 		</li>
+		
+	
+	<c:if test="${pageContext.request.userPrincipal.name==null}">
+			<li>
+			<c:url value="/registrationform" var="register"></c:url>
+			<a href="${register}"><span class="glyphicon glyphicon-inbox"></span>Sign Up</a>
+		</li>
+		
 		<li>
-			<a href="registration.jsp"><span class="glyphicon glyphicon-inbox"></span> Registration</a>
+			<c:url value="/login" var="login"></c:url>
+			<a href="${login}"><span class="glyphicon glyphicon-log-in"></span>Sign In</a>
 		</li>
+	</c:if>
 		<li>
-			<a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+			<a href="cart"><span class="glyphicon glyphicon-log-in"></span> Cart</a>
 		</li>
+		
+		<c:url value="/j_spring_security_logout" var="logoutUrl"></c:url>
+		    <c:if test="${pageContext.request.userPrincipal.name!=null }">
+		    <li><a href="${logoutUrl }">Log Out</a></li>
+		    </c:if>
 	</ul>
 </li>
 </ul>

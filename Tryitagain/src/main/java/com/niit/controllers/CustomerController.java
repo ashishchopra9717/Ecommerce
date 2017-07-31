@@ -2,27 +2,22 @@ package com.niit.controllers;
 
 import javax.validation.Valid;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.niit.configuration.DBConfiguration;
-import com.niit.dao.CustomerDaoImpl;
 import com.niit.model.Customer;
+import com.niit.model.User;
 import com.niit.service.CustomerService;
-import com.niit.service.CustomerServiceImpl;
 
 @Controller
 public class CustomerController {
 	
-    ApplicationContext context=new AnnotationConfigApplicationContext(DBConfiguration.class,CustomerDaoImpl.class,CustomerServiceImpl.class);
-    
-	CustomerService customerService=(CustomerService)context.getBean("customerServiceImpl"); 
-
+@Autowired
+CustomerService customerService;
 	
 	@RequestMapping("/registrationform")
 	public String getRegistrationForm(Model model) {
@@ -33,12 +28,32 @@ public class CustomerController {
 
 	@RequestMapping("/savecustomer")
 
-	public String registerCustomer(@Valid @ModelAttribute(name="customer") Customer customer, BindingResult result) {
+	public String registerCustomer(@Valid @ModelAttribute(name="customer") Customer customer, BindingResult result,Model model) {
 		if (result.hasErrors()) {
 			return "registrationform";
 		}
+		
+		User user=customerService.validateUsername(customer.getUser().getUsername());
+		
+		if(user!=null) //Duplicate User
+		{
+			model.addAttribute("duplicateUsername","Username already exists so please enter a different username");
+			
+			return "registrationform";
+		}
+		
+		Customer duplicateCustomer=customerService.validateEmail(customer.getEmail());
+		
+		if(duplicateCustomer!=null) //Duplicate User
+		{
+			model.addAttribute("duplicateEmail","Email Address already exists so please enter a different email");
+			
+			return "registrationform";
+		}
+		
 		customerService.registerCustomer(customer);
 		return "index";
 	}
 
+	
 }

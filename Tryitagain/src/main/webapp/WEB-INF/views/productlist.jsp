@@ -2,12 +2,13 @@
     pageEncoding="ISO-8859-1"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%@ include file="header.jsp" %>
+    <%@include file="header.jsp" %>
     
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <script>
 	$(document).ready(function() {
@@ -21,15 +22,16 @@
 	});
 </script>
 
+
 <title>Insert title here</title>
 </head>
 <body>
 
-
+	
 <div class="container">
 	<p class="text-center"><strong>List Of Products</strong></p>
 	
-<table class="table table-hover">
+<table class="table table-hover table-striped">
 <thead>
 <tr class="info">
 	<th>Image</th>
@@ -46,10 +48,6 @@
 <c:forEach items="${product}" var="p">
 
 <c:url value="/images/${p.id}.png" var="imageUrl"></c:url>
-<c:url value="/viewproduct/${p.id}" var="viewUrl"></c:url>
-<c:url value="/deleteproduct/${p.id}" var="deleteUrl"></c:url>
-<c:url value="/geteditform/${p.id}" var="editUrl"></c:url>
-
 <tr>
 <td><img src="${imageUrl }" height="50" width="50"></td>
 <td>
@@ -60,9 +58,19 @@
 <td>${p.description}</td>
 
 <td>
-<a href="${viewUrl} "><span class="glyphicon glyphicon-info-sign"></span></a>
-<a href="${deleteUrl} "><span class="glyphicon glyphicon-trash"></span></a>
-<a href="${editUrl} "><span class="glyphicon glyphicon-pencil"></span></a>
+
+<c:url value="/viewproduct${p.id}" var="viewUrl"></c:url>
+<a href="${viewUrl} "><span class="glyphicon glyphicon-info-sign" style="color:seagreen"></span></a>&nbsp&nbsp
+
+<security:authorize access="hasRole('ROLE_ADMIN')">
+<c:url value="/deleteproduct/${p.id}" var="deleteUrl"></c:url>
+<a href="${deleteUrl} "><span class="glyphicon glyphicon-trash" style="color:black"></span></a>&nbsp&nbsp
+
+<c:url value="/geteditform${p.id}" var="editUrl"></c:url>
+<a href="${editUrl} "><span class="glyphicon glyphicon-pencil" style="color:blue"></span></a>&nbsp&nbsp
+
+</security:authorize>
+
 </td>
 </tr>
 
