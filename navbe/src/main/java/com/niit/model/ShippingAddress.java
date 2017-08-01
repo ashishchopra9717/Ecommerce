@@ -16,22 +16,22 @@ public class ShippingAddress {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	
 	private int id;
-	@NotEmpty(message="Streetname is mandatory")
+	@NotEmpty(message="Street Name is mandatory")
 	private String streetname;
 	
-	@NotEmpty(message="apartmentnumber is mandatory")
+	@NotEmpty(message="Apartment Number is mandatory")
 	private String apartmentnumber;
 	
 	@NotEmpty(message="City is mandatory")
 	private String city;
 	
-	@NotEmpty(message="state is mandatory")
+	@NotEmpty(message="State is mandatory")
 	private String state;
 	
-	@NotEmpty(message="country is mandatory")
+	@NotEmpty(message="Country is mandatory")
 	private String country;
 	
-	@NotEmpty(message="zipcode is mandatory")
+	@NotEmpty(message="Zipcode is mandatory")
 	private String zipcode;
 
 	public int getId() {

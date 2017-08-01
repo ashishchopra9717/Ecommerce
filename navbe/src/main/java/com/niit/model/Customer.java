@@ -20,14 +20,14 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private int id;
-	@NotEmpty
+	@NotEmpty(message="Firstname is mandatory")
 	private String firstname;
-	@NotEmpty
+	@NotEmpty(message="Lastname is mandatory")
 	private String lastname;
 	@Column(unique=true , nullable=false)
 	@Email
 	private String email;
-	@NotEmpty
+	@NotEmpty(message="Mobile Number is mandatory")
 	@Size(max=10,min=10,message="Please enter a Valid Mobile Number")
 	private String phone;
 	

@@ -72,7 +72,7 @@ Authorities authorities= new Authorities();
 	public Customer getCustomerByUsername(String username) 
 	{
 		Session session=sessionFactory.getCurrentSession();
-		Query query=session.createQuery("from customer where user.username=?");
+		Query query=session.createQuery("from Customer where user.username=?");
 		
 		query.setString(0, username);
 		Customer customer=(Customer)query.uniqueResult();

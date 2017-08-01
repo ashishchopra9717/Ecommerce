@@ -15,7 +15,7 @@
 		<div class="panel-body" style="background:#e8f3f8">
 
 
-<table style="border: 1px solid">
+<table>
 <tr>
 <c:url value="/images/${product.id }.png" var="imageUrl"></c:url>
 <td rowspan="2"><img src="${imageUrl }" height="270" width="270"></td>
@@ -24,15 +24,30 @@
 <tr>
 <td>Product Description</td><td>${product.description}</td>
 </tr>
+
+<tr>
+<td>Quantity:</td><td>${product.quantity }</td>
+</tr>
 </table>
+<c:if test="${product.quantity==0 }">
+Out Of Stock
+</c:if>
 
-<br>
-Enter Units<input type="text" name="units">
 
-<c:url value="/cart/addtocart/${product.id}_${units}" var="cart">
-</c:url>
+<c:if test="${product.quantity!=0 }">
+<c:url value="/cart-addtocart${product.id }" var="url"></c:url>
+<form action="${url}">
 
-<a href="${cart}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+Enter Units<input  type="text" name="units"><br>
+
+<button type="submit" style="background:none;border:none;padding:0" class="btn btn-default btn-lg">
+<span class="glyphicon glyphicon-shopping-cart"></span></button>
+</form>
+</c:if>
+<c:url value="/all/product/getallproducts" var="url1"></c:url>
+<a href="${url1 }">Back to product list</a><br>
+
+</body>
 </div>
 </div>
 </body>

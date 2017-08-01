@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,6 @@ import com.niit.model.Cart;
 import com.niit.model.CartItem;
 import com.niit.model.Customer;
 import com.niit.model.Product;
-import com.niit.model.User;
 import com.niit.service.CartItemService;
 import com.niit.service.CustomerService;
 import com.niit.service.ProductService;
@@ -31,8 +31,8 @@ public class CartItemController
 	@Autowired
 	private CartItemService cartItemService;
 	
-	@RequestMapping("/cart/addtocart/{id}_{units}")
-	public String addCartItem(@PathVariable int id, @RequestParam int units,Model model)
+	@RequestMapping("cart-addtocart{id}")
+	public String addCartItem(@PathVariable int id,@RequestParam int units,Model model)
 	{
 		Product product=productService.getProductById(id);
 		
@@ -51,19 +51,19 @@ public class CartItemController
 		for(CartItem cartItem:cartItems)
 		{
 			System.out.println(cartItem.getProduct().getId());
-			System.out.println(id);
-
-		if(cartItem.getProduct().getId()==id)
-		{
-			cartItem.setQuantity(units);
-			cartItem.setTotalPrice(product.getPrice()*units);
-			cartItemService.addCartItem(cartItem);
 			
-			return "redirect:/cart/getcart";
+			System.out.println(id);
+			
+			if(cartItem.getProduct().getId()==id)
+			{
+				cartItem.setQuantity(units);
+				cartItem.setTotalPrice(product.getPrice()*units);
+				cartItemService.addCartItem(cartItem);
+				return "redirect:/cart-getcart";
+				
+			}
 		}
-		
-		}
-		
+			
 		CartItem cartItem=new CartItem();
 		
 		cartItem.setQuantity(units);
@@ -76,11 +76,11 @@ public class CartItemController
 		
 		cartItemService.addCartItem(cartItem);
 		
-		return "redirect:/cart/getcart";
+		return "redirect:/cart-getcart";
 	}
 	
-	@RequestMapping("cart/getcart")
-	public String getCart(Model model)
+	@RequestMapping("cart-getcart")
+	public String getCart(@PathVariable int id,@RequestParam int units,Model model)
 	{
 		User user=(User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
@@ -95,18 +95,18 @@ public class CartItemController
 		return "cart";
 	}
 	
-	@RequestMapping("/cart/removecartitem/{cartItemId}")
+	@RequestMapping("/cart-removecartitem{cartItemId}")
 	public String removeCartItem(@PathVariable int cartItemId)
 	{
 		cartItemService.removeCartItem(cartItemId);
-		return "redirect:/cart/getcart";
+		return "redirect:/cart-getcart";
 	}
 	
-	@RequestMapping("/cart/clearcart/{cartId}")
+	@RequestMapping("/cart-clearcart{cartId}")
 	public String removeAllCartItems(@PathVariable("cartId") int cartId)
 	{
 		cartItemService.removeAllCartItem(cartId);
-		return "redirect:/cart/getcart";
+		return "redirect:/cart-getcart";
 	}
-	
+
 }

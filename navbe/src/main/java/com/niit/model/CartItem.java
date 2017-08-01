@@ -66,8 +66,4 @@ public class CartItem
 		this.cart = cart;
 	}
 
-
-	
-	
-	
 }

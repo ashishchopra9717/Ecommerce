@@ -3,6 +3,7 @@ package com.niit.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,18 +24,8 @@ public class Cart
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
-	@OneToMany(mappedBy="cart")
+	@OneToMany(mappedBy="cart",fetch=FetchType.EAGER)
 	private List<CartItem> cartItems;
-	
-	
-	public List<CartItem> getCartItems() {
-		return cartItems;
-	}
-
-	public void setCartItems(List<CartItem> cartItems) {
-		this.cartItems = cartItems;
-	}
-
 
 	public int getId() {
 		return id;
@@ -60,7 +51,13 @@ public class Cart
 		this.customer = customer;
 	}
 
+	public List<CartItem> getCartItems() {
+		return cartItems;
+	}
 
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
 	
 
 	

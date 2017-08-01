@@ -1,7 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@include file="header.jsp" %>
     
 <html>
@@ -45,35 +41,34 @@
 
 <tbody>
 
-<c:forEach items="${product}" var="p">
+<c:forEach items="${product}" var="product">
 
-<c:url value="/images/${p.id}.png" var="imageUrl"></c:url>
+<c:url value="/images/${product.id}.png" var="imageUrl"></c:url>
 <tr>
 <td><img src="${imageUrl }" height="50" width="50"></td>
 <td>
-<a href="${viewUrl} ">${p.productName}</a>
+<a href="${viewUrl} ">${product.productName}</a>
 </td>
-<td>${p.category.categoryName}</td>
-<td>${p.price}</td>
-<td>${p.description}</td>
+<td>${product.category.categoryName}</td>
+<td>${product.price}</td>
+<td>${product.description}</td>
 
 <td>
 
-<c:url value="/viewproduct${p.id}" var="viewUrl"></c:url>
+<c:url value="/viewproduct${product.id}" var="viewUrl"></c:url>
 <a href="${viewUrl} "><span class="glyphicon glyphicon-info-sign" style="color:seagreen"></span></a>&nbsp&nbsp
 
 <security:authorize access="hasRole('ROLE_ADMIN')">
-<c:url value="/deleteproduct/${p.id}" var="deleteUrl"></c:url>
+<c:url value="/deleteproduct/${product.id}" var="deleteUrl"></c:url>
 <a href="${deleteUrl} "><span class="glyphicon glyphicon-trash" style="color:black"></span></a>&nbsp&nbsp
 
-<c:url value="/geteditform${p.id}" var="editUrl"></c:url>
+<c:url value="/geteditform${product.id}" var="editUrl"></c:url>
 <a href="${editUrl} "><span class="glyphicon glyphicon-pencil" style="color:blue"></span></a>&nbsp&nbsp
 
 </security:authorize>
 
 </td>
 </tr>
-
 </c:forEach>
 
 </tbody>

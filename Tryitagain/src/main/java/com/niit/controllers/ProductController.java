@@ -28,7 +28,7 @@ import com.niit.service.ProductService;
 	@Autowired
     ProductService productService;
     
-	@RequestMapping("/getproductform")
+	@RequestMapping("/admin-getproductform")
 
 	public String getproductform(Model model)
 	{

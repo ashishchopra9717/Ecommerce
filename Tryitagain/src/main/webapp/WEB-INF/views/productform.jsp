@@ -80,7 +80,7 @@
 			<input type="file" name="image"/>
 		</div>
 
-		<input type="submit" class="btn btn-primary btn-block" value="Add Product">
+		<input type="submit" onclick="alert('Product Added Successfully')" class="btn btn-primary btn-block" value="Add Product">
 		</form:form>
 		
 		</div>

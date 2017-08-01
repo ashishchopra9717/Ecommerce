@@ -6,6 +6,7 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1" >
 
+<link href="images/stylesheet.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
@@ -33,7 +34,7 @@
 
 <c:url value="/index" var="home"></c:url>
 <c:url value="images/logo.png" var="logo"></c:url>
-<a class="navbar-brand" href="${home}"><img src="${logo}" alt="GO" height="100px" width="300px" style="margin-top:10px"></a>
+<a class="navbar-brand" href="${home}"><img src="${logo}" alt="GO" height="100px" width="300px" style="margin-top:-15px"></a>
 
 <form class="navbar-form pull-right">
 <input type="text" class="form-control" placeholder="Search here" style="width: 700px;margin:20px 0px">
@@ -141,52 +142,51 @@
 	</ul>
 </li>
 
-	<c:url value="getallproducts" var="allproduct"></c:url>
-	<a href="${allproduct}">View Products</a>
-	
-	<li> 
-	<c:url value="/admin/getproductform" var="productform"></c:url>
-	<c:if test="${pageContext.request.userPrincipal.name!=null}">
-	
-	<security:authorize access="hasRole('ROLE_ADMIN')">
-	<a href="${productform}">Add Product</a>
-	</security:authorize>
-	</c:if>
-	</li>
-	
 	<li>
-		<c:if test="${pageContext.request.userPrincipal.name!=null }">
-			<a href="">Welcome ${pageContext.request.userPrincipal.name }</a>
-		</c:if>
+	<c:url value="getallproducts" var="allproduct"></c:url>
+	<a href="${allproduct}"><strong><font color="white">View Products</font></strong></a>
 	</li>
 	
-	<li class="dropdown">
-	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" style="color:white"></span><font color="white"> My Account</font><strong class="caret" style="color:white"></strong></a>
 
-		<ul class="dropdown-menu">
-		<li>
-			<a href="#"><span class="glyphicon glyphicon-refresh"></span>Update Profile</a>
-		</li>
-		
-	
+
 	<c:if test="${pageContext.request.userPrincipal.name==null}">
+			
 			<li>
 			<c:url value="/registrationform" var="register"></c:url>
-			<a href="${register}"><span class="glyphicon glyphicon-inbox"></span>Sign Up</a>
+			<a href="${register}"><span class="glyphicon glyphicon-log-in" style="color:white"></span><strong><font color="white">Sign Up</font></strong></a>
 		</li>
 		
 		<li>
 			<c:url value="/login" var="login"></c:url>
-			<a href="${login}"><span class="glyphicon glyphicon-log-in"></span>Sign In</a>
+			<a href="${login}"><span class="glyphicon glyphicon-log-in" style="color:white"></span><strong><font color="white">Sign In</font></strong></a>
 		</li>
+		
 	</c:if>
+
+	
+	<li class="dropdown">
+	
+	<c:if test="${pageContext.request.userPrincipal.name!=null }">
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user" style="color:white"></span><font color="white">Welcome ${pageContext.request.userPrincipal.name }</font><strong class="caret" style="color:white"></strong></a>
+	</c:if>
+	
+		<ul class="dropdown-menu">
+		<li> 
+			<c:url value="/admin-getproductform" var="productform"></c:url>
+			<security:authorize access="hasRole('ROLE_ADMIN')">
+			<a href="${productform}">Add Product</a>
+			</security:authorize>
+	
+		</li>
+		
 		<li>
-			<a href="cart"><span class="glyphicon glyphicon-log-in"></span> Cart</a>
+			<c:url value="cart-getcart" var="cart"></c:url>
+			<a href="${cart}"><span class="glyphicon glyphicon-log-in"></span> Cart</a>
 		</li>
 		
 		<c:url value="/j_spring_security_logout" var="logoutUrl"></c:url>
 		    <c:if test="${pageContext.request.userPrincipal.name!=null }">
-		    <li><a href="${logoutUrl }">Log Out</a></li>
+		    <li><a href="${logoutUrl}">Log Out</a></li>
 		    </c:if>
 	</ul>
 </li>
