@@ -62,6 +62,15 @@ public void saveProduct(Product product)
 		
 		return categories;
 	}
+
+	public List<Product> getProductByCategory(int cid) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Product where cid = ?");
+		query.setInteger(0,cid);
+		List<Product> products =query.list();
+		return products;
+	}
 	
 	
 	

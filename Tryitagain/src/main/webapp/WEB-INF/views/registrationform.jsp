@@ -9,7 +9,7 @@
 <c:url value="/savecustomer" var="url">
 </c:url>
 
-<div class="panel panel-primary" style="height: 554px; width: 1000px; margin:auto">
+<div class="panel panel-primary" style="height: 690px; width: 800px; margin:auto">
 
 <div class="panel-heading" style="text-align:center; font-size:25px">Register Here</div>
 
@@ -17,7 +17,7 @@
 <form:form action="${url}" modelAttribute="customer">
 
 <div class="row">
-<div class="col-lg-3">
+<div class="col-lg-4">
 <p class="text-primary" style="text-align:left ;font-size:23px">User Details</p>
 
 
@@ -34,14 +34,6 @@
 <form:errors path="user.password" cssStyle="color:red"></form:errors>
 </div>
 
-<div class="form-group">
-<input type="text" value="Confirm Password">
-</div>
-
-</div>
-</div>
-<div class="col-lg-3">
-<p class="text-primary" style="text-align:left ;font-size:23px">Personal Details</p>
 <div class="form-group">
 <form:label path="firstname">Enter First Name</form:label>
 <form:input path="firstname"/><br>
@@ -69,7 +61,7 @@
 </div>
 </div>
 
-<div class="col-lg-3">
+<div class="col-lg-4">
 <p class="text-primary" style="text-align:left ;font-size:23px">Billing Address</p>
 
 <div class="form-group">
@@ -109,7 +101,7 @@
 </div>
 </div>
 
-<div class="col-lg-3">
+<div class="col-lg-4">
 <p class="text-primary" style="text-align:left ;font-size:23px">Shipping Address</p>
 
 

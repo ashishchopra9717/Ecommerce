@@ -30,19 +30,30 @@
 <title>Homepage</title>
 </head>
 <body>
+
 <nav style="background:black;margin:0px"class="navbar" >
 
 <c:url value="/index" var="home"></c:url>
 <c:url value="images/logo.png" var="logo"></c:url>
 <a class="navbar-brand" href="${home}"><img src="${logo}" alt="GO" height="100px" width="300px" style="margin-top:-15px"></a>
 
-<form class="navbar-form pull-right">
 
-<c:url value="/allproductsearch" var="search"></c:url>
-<input type="text" class="form-control" placeholder="Search here" style="width: 700px;margin:20px 0px">
-<a href="${search}" class="btn-btn-default"><span class="glyphicon glyphicon-search"></span></a>
-</form>
-
+<!-- SEARCH BAR -->
+			<form action="searchproduct" method="get" class="navbar-form pull-left" style="margin-left: -15px;">
+				<div class="input-group" style="margin-top: 1px; height: 43px">
+					<input type="text" class="form-control" name="SearchKeyword"
+						id="searchAttribute" placeholder="Search Entire store here"
+						style="width: 800px; height: 43px" />
+					<div class="input-group-btn">
+	
+							<button class="btn btn-default" type="submit"style="background-color: #ffe11b" href="getallproducts">
+								<i class="glyphicon glyphicon-search"
+									style="height: 28.4px; width: 49px; padding-top: 7px"></i>
+							</button>
+						</a>
+					</div>
+				</div>
+			</form>
 </nav>
 
  <nav style="background:black"class="navbar" >
@@ -79,25 +90,19 @@
 
 		<ul class="dropdown-menu">
 		<li>
-			<a href="#">Mobile</a>
+			<a href="searchbyCategory1">Smartphones</a>
 		</li>
 		<li>
-			<a href="#">Smartphones</a>
-		</li>
-		<li>
-			<a href="#">Tablets</a>
+			<a href="searchbyCategory2">Tablets</a>
 		</li>
 		<li class="divider"></li>
 		
 		<li class="dropdown-header">More Services</li>
 		<li>
-			<a href="#">Wearables</a>
+			<a href="searchbyCategory3">Wearables</a>
 		</li>
 		<li>
-			<a href="#">Other Phones</a>
-		</li>
-		<li>
-			<a href="#">Accessories</a>
+			<a href="searchbyCategory4">Accessories</a>
 		</li>
 	</ul>
 </li>
@@ -108,19 +113,16 @@
 
 		<ul class="dropdown-menu">
 		<li>
-			<a href="#">QLED TV</a>
+			<a href="searchbyCategory5">QLED TV</a>
 		</li>
 		<li>
-			<a href="#">UHD TV</a>
+			<a href="searchbyCategory6">UHD TV</a>
 		</li>
 		<li>
-			<a href="#">FULL HD TV</a>
+			<a href="searchbyCategory7">FULL HD TV</a>
 		</li>
-		<li class="divider"></li>
-		
-		<li class="dropdown-header">More Services</li>
 		<li>
-			<a href="#">HD TV</a>
+			<a href="searchbyCategory8">HD TV</a>
 		</li>
 	</ul>
 </li>
@@ -131,16 +133,14 @@
 
 		<ul class="dropdown-menu">
 		<li>
-			<a href="#">SSD</a>
+			<a href="searchbyCategory9">SSD</a>
 		</li>
 		<li>
-			<a href="#">Portable SSD</a>
+			<a href="searchbyCategory10">Portable SSD</a>
 		</li>
 		<li>
-			<a href="#">Memory Card</a>
-		</li>
-		<li class="divider"></li>
-		
+			<a href="searchbyCategory11">Memory Card</a>
+		</li>		
 	</ul>
 </li>
 
@@ -160,7 +160,7 @@
 		
 		<li>
 			<c:url value="/login" var="login"></c:url>
-			<a href="${login}"><span class="glyphicon glyphicon-log-in" style="color:white"></span><strong><font color="white">Sign In</font></strong></a>
+			<a href="${login}"><span class="glyphicon glyphicon-log-in" style="color:white"></span><strong><font color="white">Log In</font></strong></a>
 		</li>
 		
 	</c:if>
@@ -182,7 +182,7 @@
 		</li>
 		
 		<li>
-			<c:url value="cart-getcart" var="cart"></c:url>
+			<c:url value="cartgetcart" var="cart"></c:url>
 			<a href="${cart}"><span class="glyphicon glyphicon-log-in"></span> Cart</a>
 		</li>
 		

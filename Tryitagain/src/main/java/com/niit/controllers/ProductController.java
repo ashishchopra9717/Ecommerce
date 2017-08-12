@@ -146,18 +146,23 @@ import com.niit.service.ProductService;
    
 
 
-		@RequestMapping("/allproductsearch")
-		public String productSearch(@RequestParam String searchCondition,Model model)
-		{
-			model.addAttribute("products",productService.getAllProducts());
-			if(searchCondition.equals("All"))
-			{
-				model.addAttribute("searchCondition","");	
-			}
-			else
-			{
-				model.addAttribute("searchCondition",searchCondition);
-			}
-			return "productlist";
-		}
+   @RequestMapping("searchbyCategory{cid}")
+	public String selectByCategory(@PathVariable int cid,Model model)
+	{
+		List<Product> products = productService.getProductByCategory(cid);
+	    model.addAttribute("products",products);
+		 return "productlist";
+	}
+   
+   @RequestMapping("/searchproduct")
+	public String searchProduct(@RequestParam String SearchKeyword,Model model)
+	{
+		List <Product> products =productService.getAllProducts();
+		model.addAttribute("products",products);
+		 
+		 model.addAttribute("searchCondition",SearchKeyword);		
+	     return "productlist";
+		 
+	}
+	
 }

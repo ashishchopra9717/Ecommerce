@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -32,6 +33,7 @@ public class BillingAddress
 	private String country;
 	
 	@NotEmpty(message="Zipcode is mandatory")
+	@Size(max=6,min=6,message="Zipcode should be of 6 numbers")
 	private String zipcode;
 
 	public int getId() {

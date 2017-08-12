@@ -36,7 +36,6 @@
 	<th>Product Name</th>
 	<th>Category</th>
 	<th>Price</th>
-	<th>Product Description</th>
 	<th>Action</th>
 </tr>
 </thead>
@@ -53,7 +52,7 @@
 </td>
 <td>${product.category.categoryName}</td>
 <td>${product.price}</td>
-<td>${product.description}</td>
+
 
 <td>
 

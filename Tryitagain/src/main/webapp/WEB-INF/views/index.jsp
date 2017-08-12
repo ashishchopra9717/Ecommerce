@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<div class="container" style="background:blue">
+<div class="container">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -15,39 +15,31 @@
     <li data-target="#myCarousel" data-slide-to="2"></li>
     <li data-target="#myCarousel" data-slide-to="3"></li>
     <li data-target="#myCarousel" data-slide-to="4"></li>
-    <li data-target="#myCarousel" data-slide-to="5"></li>
-    <li data-target="#myCarousel" data-slide-to="6"></li>
+   
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="images/s8originalnew.jpg" class="first slide" alt="first slide">  
+      <img src="images/mainimage1.PNG" class="first slide" alt="first slide" style="width:100%;length:300%">  
     </div>
 
     <div class="item">
-      <img class="second slide" src="images/uhd.jpg" alt="second slide">
+      <img class="second slide" src="images/scene.jpg" alt="second slide" style="width:100%;length:300%">
     </div>
 
-    <div class="item">
-      <img class="third slide" src="images/iphone7-2-1.jpg" alt="third slide">
+    <div class="item"> 
+      <img class="third slide" src="images/rockxsiri.PNG" alt="third slide" style="width:100%;length:300%">
     </div>
     
     <div class="item">
-      <img class="fourth slide" src="images/s8new1.png" alt="fourth slide">
+      <img class="fourth slide" src="images/avmain.jpg" alt="fourth slide" style="width:100%;length:300%">
     </div>
     
     <div class="item">
-      <img class="fifth slide" src="images/roomtv.jpg" alt="fifth slide">
+      <img class="fifth slide" src="images/Waterphone.jpeg" alt="fifth slide" style="width:100%;length:300%">
     </div>
     
-     <div class="item">
-      <img class="sixth slide" src="images/s8offer.jpg" alt="sixth slide">
-    </div>
-    
-     <div class="item">
-      <img class="seventh slide" src="images/apple.jpg" alt="seventh slide">
-    </div>
   </div>
 
   <!-- Left and right controls -->

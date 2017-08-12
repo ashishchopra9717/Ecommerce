@@ -1,5 +1,9 @@
 @CHARSET "ISO-8859-1";
 
-.dropdown .dropdown-toggle a:hover{
-	color:black;
+li.dropdown:hover>.dropdown-menu{
+	display:block;
+}
+
+.navbar .nav>li> a:hover{
+	background-color: #6666ff;
 }

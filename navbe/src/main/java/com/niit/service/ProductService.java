@@ -19,4 +19,5 @@ public interface ProductService
 	
 	List<Category> getAllCategories();
 	
+	public List<Product> getProductByCategory(int cid);
 }

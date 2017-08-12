@@ -60,4 +60,9 @@ public void updateProduct(Product product)
 	productDao.editProduct(product);
 	
 }
+
+public List<Product> getProductByCategory(int cid) 
+{
+	return productDao.getProductByCategory(cid);
+}
 }
