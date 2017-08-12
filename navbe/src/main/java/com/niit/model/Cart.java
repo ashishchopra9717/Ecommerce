@@ -27,6 +27,7 @@ public class Cart
 	@OneToMany(mappedBy="cart",fetch=FetchType.EAGER)
 	private List<CartItem> cartItems;
 
+	
 	public int getId() {
 		return id;
 	}

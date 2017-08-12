@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.model.Authorities;
+import com.niit.model.Cart;
 import com.niit.model.Customer;
 import com.niit.model.User;
 
@@ -23,8 +24,8 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	public void registerCustomer(Customer customer) {
 		
-Authorities authorities= new Authorities();
-		
+		Authorities authorities= new Authorities();
+
 		authorities.setRole("ROLE_USER");
 		
 		User user= customer.getUser();
@@ -34,6 +35,12 @@ Authorities authorities= new Authorities();
 		String username=customer.getUser().getUsername();
 		
 		authorities.setUsername(username);
+		
+		Cart cart=new Cart();
+		
+		cart.setCustomer(customer);
+		
+		customer.setCart(cart);
 		
 		Session session= sessionFactory.getCurrentSession();
 		

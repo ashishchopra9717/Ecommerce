@@ -37,8 +37,10 @@
 <a class="navbar-brand" href="${home}"><img src="${logo}" alt="GO" height="100px" width="300px" style="margin-top:-15px"></a>
 
 <form class="navbar-form pull-right">
+
+<c:url value="/allproductsearch" var="search"></c:url>
 <input type="text" class="form-control" placeholder="Search here" style="width: 700px;margin:20px 0px">
-<button type="submit" class="btn-btn-default "><span class="glyphicon glyphicon-search"></span></button>
+<a href="${search}" class="btn-btn-default"><span class="glyphicon glyphicon-search"></span></a>
 </form>
 
 </nav>

@@ -11,6 +11,7 @@
 </head>
 <body>
 <div class="panel panel-primary" style="height: 545px; width: 750px; margin:auto">
+
 		<div class="panel-heading" style="text-align:center;font-size:25px">${product.productName}</div>
 		<div class="panel-body" style="background:#e8f3f8">
 
@@ -35,7 +36,7 @@ Out Of Stock
 
 
 <c:if test="${product.quantity!=0 }">
-<c:url value="/cart-addtocart${product.id }" var="url"></c:url>
+<c:url value="/cartaddtocart${product.id}" var="url"></c:url>
 <form action="${url}">
 
 Enter Units<input  type="text" name="units"><br>

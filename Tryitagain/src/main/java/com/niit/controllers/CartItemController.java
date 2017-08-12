@@ -20,93 +20,129 @@ import com.niit.service.CustomerService;
 import com.niit.service.ProductService;
 
 @Controller
-public class CartItemController 
-{
+public class CartItemController {
+
 	@Autowired
 	private ProductService productService;
-	
+   
 	@Autowired
 	private CustomerService customerService;
 	
 	@Autowired
 	private CartItemService cartItemService;
 	
-	@RequestMapping("cart-addtocart{id}")
-	public String addCartItem(@PathVariable int id,@RequestParam int units,Model model)
+	
+	
+	@RequestMapping("/cartaddtocart{id}")
+	public String addCartItem(@PathVariable int id, @RequestParam int units,Model model)
 	{
-		Product product=productService.getProductById(id);
 		
-		User user=(User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Product product =  productService.getProductById(id);
 		
-		String username=user.getUsername();
 		
-		Customer customer=customerService.getCustomerByUsername(username);
+		// To get User(logged in) Details , get Principal   object  from securitycontextholder
 		
-		Cart cart=customer.getCart();
+		User user =(User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
-		List<CartItem> cartItems=cart.getCartItems();
+		String username = user.getUsername();
 		
-		System.out.println(cart.getCartItems().size());
+		Customer customer = customerService.getCustomerByUsername(username);
+	
+		Cart cart = customer.getCart();
 		
-		for(CartItem cartItem:cartItems)
+		List<CartItem>  cartItems = cart.getCartItems();
+		 
+		
+		//check If purchased product is already existing in the cartitem  table; 
+		for(CartItem  cartItem:cartItems)
 		{
-			System.out.println(cartItem.getProduct().getId());
-			
-			System.out.println(id);
-			
+				
 			if(cartItem.getProduct().getId()==id)
 			{
+				//product id in table (productid in database) == id(input)
+				 
 				cartItem.setQuantity(units);
 				cartItem.setTotalPrice(product.getPrice()*units);
-				cartItemService.addCartItem(cartItem);
-				return "redirect:/cart-getcart";
-				
+				cartItemService.addCartItem(cartItem); // update cartitem units & totalprice;				 
+				return "redirect:/cartgetcart";
 			}
+				
 		}
-			
-		CartItem cartItem=new CartItem();
+		
+		CartItem cartItem = new CartItem();
 		
 		cartItem.setQuantity(units);
+		cartItem.setTotalPrice(product.getPrice() * units);
+		cartItem.setProduct(product);  //product_id column in cartItem table
+		cartItem.setCart(cart); // cart_id column in cartItem table
+		cartItemService.addCartItem(cartItem); //insert
+		return "redirect:/cartgetcart";
 		
-		cartItem.setTotalPrice(product.getPrice()*units);
-	
-		cartItem.setProduct(product);
-		
-		cartItem.setCart(cart);
-		
-		cartItemService.addCartItem(cartItem);
-		
-		return "redirect:/cart-getcart";
 	}
 	
-	@RequestMapping("cart-getcart")
-	public String getCart(@PathVariable int id,@RequestParam int units,Model model)
+	
+	@RequestMapping("/cartgetcart")
+	public String  getCart(Model model)
 	{
-		User user=(User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
-		String username=user.getUsername();
+		String username =  user.getUsername();
+	   
+		Customer customer = customerService.getCustomerByUsername(username);
 		
-		Customer customer=customerService.getCustomerByUsername(username);
+		Cart cart = customer.getCart();
 		
-		Cart cart=customer.getCart();
-		
-		model.addAttribute("cart", cart);
+		int a=cart.getId();
+		List<CartItem> cartItems = cart.getCartItems();
+		model.addAttribute("a",a);
+		model.addAttribute("cartItems",cartItems);
+		model.addAttribute("cart",cart);
 		
 		return "cart";
 	}
 	
-	@RequestMapping("/cart-removecartitem{cartItemId}")
-	public String removeCartItem(@PathVariable int cartItemId)
+	
+	@RequestMapping("/cart_removecartitem{cartItemId}")
+	public String removeCartItem(@PathVariable int cartItemId,Model model )
 	{
-		cartItemService.removeCartItem(cartItemId);
-		return "redirect:/cart-getcart";
+		
+		 cartItemService.removeCartItem(cartItemId);
+
+			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			
+			String username =  user.getUsername();
+		   
+			Customer customer = customerService.getCustomerByUsername(username);
+			
+			Cart cart = customer.getCart();
+			
+			model.addAttribute("cart",cart);
+			
+			return "redirect:/cartgetcart";
+		 
 	}
 	
-	@RequestMapping("/cart-clearcart{cartId}")
-	public String removeAllCartItems(@PathVariable("cartId") int cartId)
+	@RequestMapping("/cart_clearcart{cartId}")
+	public String removeAllCartItems(@PathVariable int cartId,Model model)
 	{
+		
 		cartItemService.removeAllCartItem(cartId);
-		return "redirect:/cart-getcart";
-	}
 
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		String username =  user.getUsername();
+	   
+		Customer customer = customerService.getCustomerByUsername(username);
+		
+		Cart cart = customer.getCart();
+		
+		model.addAttribute("cart",cart);
+		
+		return "redirect:/cartgetcart";
+		
+	}
+	
+	
+	
 }
+ 

@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.niit.model.Category;
@@ -62,7 +63,7 @@ import com.niit.service.ProductService;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return"productlist";
+		return"redirect:/getallproducts";
 		}
 	
 	@RequestMapping("/getallproducts")
@@ -143,5 +144,20 @@ import com.niit.service.ProductService;
 	   return "redirect:/getallproducts";
    }
    
-}
 
+
+		@RequestMapping("/allproductsearch")
+		public String productSearch(@RequestParam String searchCondition,Model model)
+		{
+			model.addAttribute("products",productService.getAllProducts());
+			if(searchCondition.equals("All"))
+			{
+				model.addAttribute("searchCondition","");	
+			}
+			else
+			{
+				model.addAttribute("searchCondition",searchCondition);
+			}
+			return "productlist";
+		}
+}

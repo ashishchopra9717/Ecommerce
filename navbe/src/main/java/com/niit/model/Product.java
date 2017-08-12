@@ -17,7 +17,7 @@ public class Product
 {
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
-private int Id;
+private int id;
 @NotEmpty(message="Required field needs to be filled")
 private String productName;
 @Min(value=50)
@@ -36,7 +36,6 @@ public void setImage(MultipartFile image) {
 	this.image = image;
 }
 @ManyToOne
-
 @JoinColumn(name="cid")
 private Category category;
 
@@ -46,17 +45,18 @@ public Category getCategory() {
 public void setCategory(Category category) {
 	this.category = category;
 }
-public int getId() {
-	return Id;
-}
-public void setId(int id) {
-	Id = id;
-}
+
 public String getProductName() {
 	return productName;
 }
 public void setProductName(String productName) {
 	this.productName = productName;
+}
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
 }
 public int getPrice() {
 	return price;

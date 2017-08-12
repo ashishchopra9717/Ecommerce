@@ -35,9 +35,9 @@
 </div>
 
 <div class="form-group">
-<form:label path="user.password">Confirm Password</form:label>
-<form:input path="user.password"/><br>
-<form:errors path="user.password" cssStyle="color:red"></form:errors>
+<input type="text" value="Confirm Password">
+</div>
+
 </div>
 </div>
 <div class="col-lg-3">

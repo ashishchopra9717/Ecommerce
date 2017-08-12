@@ -1,3 +1,5 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="header.jsp" %>
     
 <html>
@@ -9,17 +11,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-<div>
-	<c:url value="/cart-clearcart${cart.id}" var="clear"></c:url>
-	<a href="${clear}" class="btn btn-danger pull-left">
-	<span class="glyphicon glyphicon-remove-sign">Clear Cart</span>
+
+  <c:url value="/cart_clearcart${a}" var="clear"></c:url>
+	<a href="${clear}" class="btn btn-warning pull-right">
+	<span class="glyphicon glyphicon-shopping-cart">clear</span>
 	</a>
 	
-	<c:url value="/cart/orders/${cart.id}" var="order"></c:url>
+	
+
+	
+	<c:url value="/cart/orders/${a}" var="order"></c:url>
 	<a href="${order}" class="btn btn-warning pull-right">
 	<span class="glyphicon glyphicon-shopping-cart">Checkout</span>
-	</a>
+	</a> 
 	
 <table class="table table-striped">
 <thead>
@@ -35,13 +39,13 @@
 
 
 
-<c:forEach items="${cart.cartItems}" var="cartItem">
+<c:forEach items="${cartItems}" var="cartItem">
 <tr>
 <td>${cartItem.product.productName}</td>
 <td>${cartItem.quantity}</td>
 <td>${cartItem.totalPrice}</td>
 
-<c:url value="/cart-removecartitem${cartItem.cartItemId}" var="remove"></c:url>
+<c:url value="/cart_removecartitem${cartItem.cartItemId}" var="remove"></c:url>
 <td><a href="${remove}" class="label label-danger"><span class="glyphicon glyphicon-remove">Remove</span></a></td>
 
 <c:set var="grandTotal" value="${cartItem.totalPrice + grandTotal }"></c:set>
@@ -50,7 +54,7 @@
 
 </table>
 Total Price:${grandTotal}
-</div>
+
 
 </body>
 </html>
