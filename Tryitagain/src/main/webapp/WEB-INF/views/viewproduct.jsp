@@ -17,25 +17,26 @@
 
 		<div class="panel-heading" style="text-align:center;font-size:25px">${product.productName}</div>
 		<div class="panel-body" style="background:#e8f3f8">
-
-
+<div class="col-md-7">
 <c:url value="/images/${product.id }.png" var="imageUrl"></c:url>
-<img src="${imageUrl }" style="width: 60%; height: 60%">
-
-<table class="table table-hover" style="width:40%">
+<img src="${imageUrl }" style="width: 90%; height: 60% ;margin-top:20px">
+</div>
+<br><br>
+<table class="table table-hover table-striped" style="width:40%;margin-top:-20px;margin-left:-850px">
 <tr>
-<td style=font-weight: bold;">${product.productName}</td>
+<td><strong>Price</strong></td><td><i class="fa fa-inr" style="font-size: 18px; color:blue"></i><b style="color:blue">${product.price}</b></td>
 </tr>
 <tr>
-<td>Product Description</td><td>${product.description}</td>
+<td><strong>Product Description</strong></td><td>${product.description}</td>
 </tr>
 
+
 <tr>
-<td>Quantity:</td><td>${product.quantity }</td>
+<td><strong>Quantity:</strong></td><td>${product.quantity }</td>
 </tr>
 </table>
 <c:if test="${product.quantity==0 }">
-Out Of Stock
+<strong>Out Of Stock</strong>
 </c:if>
 
 
@@ -43,18 +44,19 @@ Out Of Stock
 <c:url value="/cartaddtocart${product.id}" var="url"></c:url>
 <form action="${url}">
 <security:authorize access="hasRole('ROLE_USER')">
-Enter Units<input  type="text" name="units"><br>
+<strong>Enter Units</strong><input  type="text" name="units"><br>
 
-<button type="submit" style="background:none;border:none;padding:0" class="btn btn-default btn-lg">
-<span class="glyphicon glyphicon-shopping-cart">Add To Cart</span></button>
+<button class="btn btn-primary" style="margin-left:500px ;margin-top:40px" type="submit" >
+<i class="glyphicon glyphicon-shopping-cart" style="height: 22px; width: 129px">Add To Cart</i></button>
 </form>
 </security:authorize>
 </c:if>
 <c:url value="getallproducts" var="url1"></c:url>
-<a href="${url1 }">Back to Product List</a><br>
+<a class ="btn btn-primary" style="margin-top:-45px" href="${url1 }">Back to Product List</a><br>
 
 </body>
 </div>
 </div>
+<jsp:include page="footer.jsp" ></jsp:include>
 </body>
 </html>

@@ -11,18 +11,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="panel panel-warning" style="height: 545px; width: 1050px; margin:auto">
+
+		<div class="panel-body" style="background:#e8f3f8">
 
   <c:url value="/cart_clearcart${a}" var="clear"></c:url>
-	<a href="${clear}" class="btn btn-warning pull-right">
-	<span class="glyphicon glyphicon-shopping-cart">clear</span>
+	<a href="${clear}" class="btn btn-warning pull-left" style="font-size:20px">
+	<span class="glyphicon glyphicon-shopping-cart" style="font-size:15px"><b style="font-size:18px">Clear Cart</b></span>
 	</a>
 	
 	
 
 	
-	<c:url value="/cart/orders/${a}" var="order"></c:url>
-	<a href="${order}" class="btn btn-warning pull-right">
-	<span class="glyphicon glyphicon-shopping-cart">Checkout</span>
+	<c:url value="/success" var="order"></c:url>
+	<a href="${order}" class="btn btn-success pull-right" style="font-size:20px">
+	<span class="glyphicon glyphicon-shopping-cart" style="font-size:15px"><b style="font-size:18px">Checkout</b></span>
 	</a> 
 	
 <table class="table table-striped">
@@ -46,15 +49,15 @@
 <td>${cartItem.totalPrice}</td>
 
 <c:url value="/cart_removecartitem${cartItem.cartItemId}" var="remove"></c:url>
-<td><a href="${remove}" class="label label-danger"><span class="glyphicon glyphicon-remove">Remove</span></a></td>
+<td><a href="${remove}" class="label label-danger" style="font-size:15px"><span class="glyphicon glyphicon-remove" style="font-size:15px">Remove</span></a></td>
 
 <c:set var="grandTotal" value="${cartItem.totalPrice + grandTotal }"></c:set>
 </tr>
 </c:forEach>
 
 </table>
-Total Price:${grandTotal}
-
-
+<p style="font-size:30px">Total Price:${grandTotal}</p>
+</div>
+</div>
 </body>
 </html>

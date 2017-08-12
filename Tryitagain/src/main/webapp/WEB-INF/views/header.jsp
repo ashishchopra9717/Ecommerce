@@ -14,7 +14,8 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
+<!-- For Rupee Sign -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- JQuery -->
 <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
 
@@ -35,7 +36,7 @@
 
 <c:url value="/index" var="home"></c:url>
 <c:url value="images/logo.png" var="logo"></c:url>
-<a class="navbar-brand" href="${home}"><img src="${logo}" alt="GO" height="100px" width="300px" style="margin-top:-15px"></a>
+<a class="navbar-brand" href="${home}"><img src="${logo}" alt="GO" height="50px" width="200px" style="margin-top:-15px"></a>
 
 
 <!-- SEARCH BAR -->

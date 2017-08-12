@@ -142,6 +142,11 @@ public class CartItemController {
 		
 	}
 	
+	@RequestMapping("/success")
+	public String success()
+	{
+		return "success";
+	} 
 	
 	
 }

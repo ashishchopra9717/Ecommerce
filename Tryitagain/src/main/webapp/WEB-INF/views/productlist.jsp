@@ -27,7 +27,7 @@
 
 	
 <div class="container">
-	<p class="text-center"><strong>List Of Products</strong></p>
+	<p class="text-center" style="font-size:25px;color:blue"><strong>List Of Products</strong></p>
 	
 <table class="table table-hover table-striped">
 <thead>
@@ -44,27 +44,27 @@
 
 <c:forEach items="${product}" var="product">
 
+<c:url value="/viewproduct${product.id}" var="viewUrl"></c:url>
 <c:url value="/images/${product.id}.png" var="imageUrl"></c:url>
 <tr>
-<td><img src="${imageUrl }" height="50" width="50"></td>
+<td><a href="${viewUrl}"><img src="${imageUrl }" height="150px" width="150px"></a></td>
 <td>
-<a href="${viewUrl} ">${product.productName}</a>
+<a href="${viewUrl}"><h3 style="padding-top:40px">${product.productName}</h3></a>
 </td>
-<td>${product.category.categoryName}</td>
-<td>${product.price}</td>
+<td><h3 style="padding-top:40px">${product.category.categoryName}</h3></td>
+<td><h3 style="padding-top:40px">${product.price}</h3></td>
 
 
 <td>
 
-<c:url value="/viewproduct${product.id}" var="viewUrl"></c:url>
-<a href="${viewUrl} "><span class="glyphicon glyphicon-info-sign" style="color:seagreen"></span></a>&nbsp&nbsp
+<a href="${viewUrl} "><span class="glyphicon glyphicon-info-sign" style="padding-top:60px;font-size:25px;color:seagreen"></span></a>&nbsp&nbsp
 
 <security:authorize access="hasRole('ROLE_ADMIN')">
 <c:url value="/deleteproduct/${product.id}" var="deleteUrl"></c:url>
-<a href="${deleteUrl} "><span class="glyphicon glyphicon-trash" style="color:black"></span></a>&nbsp&nbsp
+<a href="${deleteUrl} "><span class="glyphicon glyphicon-trash" style="padding-top:60px;font-size:25px;color:black"></span></a>&nbsp&nbsp
 
 <c:url value="/geteditform${product.id}" var="editUrl"></c:url>
-<a href="${editUrl} "><span class="glyphicon glyphicon-pencil" style="color:blue"></span></a>&nbsp&nbsp
+<a href="${editUrl} "><span class="glyphicon glyphicon-pencil" style="padding-top:60px;font-size:25px;color:blue"></span></a>&nbsp&nbsp
 
 </security:authorize>
 
@@ -76,6 +76,6 @@
 
 </table>
 </div>
-
+<jsp:include page="footer.jsp" ></jsp:include>
 </body>
 </html>

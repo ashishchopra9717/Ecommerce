@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,9 +19,12 @@ public class User {
 
 	@NotEmpty
 	@Column(unique = true, nullable = false)
+	@Pattern(regexp="{A-Za-z0-9}",message="Username cannot contain special characters")
+	@Size(max=8,min=6,message="Username should have 6 to 8 characters")
 	private String username;
 
 	@NotEmpty
+	@Size(min=6,max=8,message="Password should have 6 to 8 characters")
 	private String password;
 	
 	private Boolean enabled;
