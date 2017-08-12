@@ -24,6 +24,10 @@
 
 <jsp:include page="header.jsp"></jsp:include>
 
+<div class="panel panel-primary" style="height: 695px; width: 550px; margin:auto">
+		<div class="panel-heading" style="text-align:center;font-size:25px">Edit Form</div>
+		<div class="panel-body" style="background:#e8f3f8">
+
 <form:form action="editproduct" method="post" modelAttribute="productObj" enctype="multipart/form-data">
 	
 	<div class="form-group">
@@ -60,11 +64,17 @@
 	<br>
 
 	<div class="form-group">
-	Select category
-		<c:forEach items="${categories }" var="c">
-			<form:radiobutton path="category.id" value="${c.id}"/>${c.categoryName}
-			</c:forEach>
-	</div>
+						<b> Select Category</b>
+						<form:select path="category.id" class="form-control" style="width:94%">
+							<c:forEach items="${categories}" var="c">
+								<form:option value="${c.id}">
+								${c.categoryName}  
+                                 </form:option>
+
+							</c:forEach>
+						</form:select>
+					</div>
+	
 	<br>
 	<div class="form-group">
 	Upload an image
@@ -75,6 +85,8 @@
 	
 	<input type="submit" value="Edit Product">
 </form:form>
+</div>
+</div>
 </body>
 </html>
 

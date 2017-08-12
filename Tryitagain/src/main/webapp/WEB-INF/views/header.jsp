@@ -80,12 +80,12 @@
 	</li>
 <span class="sr-only">You are in Homepage</span>
 
-<li>
+<%-- <li>
 	<c:url value="/aboutus" var="about"></c:url>
 		<a href="${about}"><font color="white">About Us</font></a>
 	</li>
 <span class="sr-only">About Us</span>
-
+ --%>
 <li class="dropdown">
 	<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-phone" style="color:white"><font color="white"> Mobile</font><strong class="caret"></strong></a>
 
@@ -147,7 +147,7 @@
 
 	<li>
 	<c:url value="getallproducts" var="allproduct"></c:url>
-	<a href="${allproduct}"><strong><font color="white">View Products</font></strong></a>
+	<a href="${allproduct}"><span class="glyphicon glyphicon-th-list" style="color:white"></span><strong><font color="white">View Products</font></strong></a>
 	</li>
 	
 
@@ -161,7 +161,7 @@
 		
 		<li>
 			<c:url value="/login" var="login"></c:url>
-			<a href="${login}"><span class="glyphicon glyphicon-log-in" style="color:white"></span><strong><font color="white">Log In</font></strong></a>
+			<a href="${login}"><span class="glyphicon glyphicon-briefcase" style="color:white"></span><strong><font color="white">Log In</font></strong></a>
 		</li>
 		
 	</c:if>
@@ -177,19 +177,21 @@
 		<li> 
 			<c:url value="/admin-getproductform" var="productform"></c:url>
 			<security:authorize access="hasRole('ROLE_ADMIN')">
-			<a href="${productform}">Add Product</a>
+			<a href="${productform}"><span class="glyphicon glyphicon-folder-open"></span>Add Product</a>
 			</security:authorize>
 	
 		</li>
 		
 		<li>
 			<c:url value="cartgetcart" var="cart"></c:url>
+			<security:authorize access="hasRole('ROLE_USER')">
 			<a href="${cart}"><span class="glyphicon glyphicon-log-in"></span> Cart</a>
+			</security:authorize>
 		</li>
 		
 		<c:url value="/j_spring_security_logout" var="logoutUrl"></c:url>
 		    <c:if test="${pageContext.request.userPrincipal.name!=null }">
-		    <li><a href="${logoutUrl}">Log Out</a></li>
+		    <li><a href="${logoutUrl}"><span class="glyphicon glyphicon-off"></span>Log Out</a></li>
 		    </c:if>
 	</ul>
 </li>

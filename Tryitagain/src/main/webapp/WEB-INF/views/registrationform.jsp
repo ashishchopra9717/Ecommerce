@@ -9,7 +9,7 @@
 <c:url value="/savecustomer" var="url">
 </c:url>
 
-<div class="panel panel-primary" style="height: 690px; width: 800px; margin:auto">
+<div class="panel panel-primary" style="height: 590px; width: 800px; margin:auto">
 
 <div class="panel-heading" style="text-align:center; font-size:25px">Register Here</div>
 
@@ -141,7 +141,8 @@
 <form:errors path="shippingAddress.zipcode" cssStyle="color:red"></form:errors>
 </div>
 </div>
-<input type="submit" onclick="alert('You have Registered Successfully')" class="btn btn-primary btn-block"  value="Register" >
+<br><br>
+<input type="submit" class="btn btn-primary btn-block"  value="Register" >
 </div>
 
 </form:form>

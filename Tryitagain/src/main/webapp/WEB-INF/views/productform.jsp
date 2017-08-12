@@ -30,7 +30,7 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 
-	<div class="panel panel-primary" style="height: 545px; width: 450px; margin:auto">
+	<div class="panel panel-primary" style="height: 695px; width: 550px; margin:auto">
 		<div class="panel-heading" style="text-align:center;font-size:25px">Product Form</div>
 		<div class="panel-body" style="background:#e8f3f8">
 
@@ -45,42 +45,51 @@
 					<strong>Product Name</strong>
 					<form:input path="productName" class="form-control"
 						placeholder="Enter Product Name" />
+						<br>
 					<form:errors path="productName" cssStyle="color:red"></form:errors>
 				</div>
 
 		<div class="form-group" style="margin:20px 0px">
 			<strong>Price</strong>
 			<form:input path="price" class="form-control"/>
+			<br>
 			<form:errors path="price" cssStyle="color:red"></form:errors>
 		</div>
 		
 
 		<div class="form-group" style="margin:20px 0px">
 			<strong>Quantity</strong>
-			<form:input path="quantity" class="form-control"/>
+			<form:input path="quantity" class="form-control"/><br>
 			<form:errors path="quantity" cssStyle="color:red"></form:errors>
 		</div>
 
 		<div class="form-group" style="margin:20px 0px">
 			<strong>Enter Description</strong>
 			<form:textarea path="description" class="form-control"
-				placeholder="Enter Description" />
+				placeholder="Enter Description" /><br>
 			<form:errors path="description" cssStyle="color:red"></form:errors>
 		</div>
+		
+		<div class="form-group">
+						<b> Select Category</b>
+						<form:select path="category.id" class="form-control" style="width:94%">
+							<c:forEach items="${categories}" var="c">
+								<form:option value="${c.id}">
+								${c.categoryName}  
+                                 </form:option>
 
-		<div class="form-group" style="margin:20px 0px">
-			<strong>Select category</strong>
-			<c:forEach items="${categories }" var="c">
-				<form:radiobutton path="category.id" value="${c.id}" />${c.categoryName}
-			</c:forEach>
-		</div>
+							</c:forEach>
+						</form:select>
+					</div>
+
+		
 		<div class="form-group" style="margin:20px 0px">
 			<p style="font-size:15px; font-weight:bold; margin-bottom:10px">Upload an image</p>
 			
 			<input type="file" name="image"/>
 		</div>
 
-		<input type="submit" onclick="alert('Product Added Successfully')" class="btn btn-primary btn-block" value="Add Product">
+		<input type="submit" class="btn btn-primary btn-block" value="Add Product">
 		</form:form>
 		
 		</div>

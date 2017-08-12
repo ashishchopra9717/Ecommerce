@@ -52,7 +52,7 @@
 </security:authorize>
 </c:if>
 <c:url value="getallproducts" var="url1"></c:url>
-<a class ="btn btn-primary" style="margin-top:-45px" href="${url1 }">Back to Product List</a><br>
+<a class ="btn btn-primary" style="margin:auto" href="${url1 }">Back to Product List</a><br>
 
 </body>
 </div>

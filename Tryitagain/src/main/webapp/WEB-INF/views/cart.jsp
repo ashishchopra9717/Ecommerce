@@ -23,7 +23,7 @@
 	
 
 	
-	<c:url value="/success" var="order"></c:url>
+	<c:url value="/success${a}" var="order"></c:url>
 	<a href="${order}" class="btn btn-success pull-right" style="font-size:20px">
 	<span class="glyphicon glyphicon-shopping-cart" style="font-size:15px"><b style="font-size:18px">Checkout</b></span>
 	</a> 

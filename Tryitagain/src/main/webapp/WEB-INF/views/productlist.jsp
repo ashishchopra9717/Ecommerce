@@ -52,19 +52,19 @@
 <a href="${viewUrl}"><h3 style="padding-top:40px">${product.productName}</h3></a>
 </td>
 <td><h3 style="padding-top:40px">${product.category.categoryName}</h3></td>
-<td><h3 style="padding-top:40px">${product.price}</h3></td>
+<td style="width:100px"><h3 style="padding-top:40px;color:blue"><i class="fa fa-inr" style="font-size: 28px; color:blue"></i>${product.price}</h3></td>
 
 
-<td>
+<td style="width:120px">
 
 <a href="${viewUrl} "><span class="glyphicon glyphicon-info-sign" style="padding-top:60px;font-size:25px;color:seagreen"></span></a>&nbsp&nbsp
 
 <security:authorize access="hasRole('ROLE_ADMIN')">
 <c:url value="/deleteproduct/${product.id}" var="deleteUrl"></c:url>
-<a href="${deleteUrl} "><span class="glyphicon glyphicon-trash" style="padding-top:60px;font-size:25px;color:black"></span></a>&nbsp&nbsp
+<a href="${deleteUrl} "><span class="glyphicon glyphicon-trash" style="padding-top:60px;font-size:25px;color:red"></span></a>&nbsp&nbsp
 
 <c:url value="/geteditform${product.id}" var="editUrl"></c:url>
-<a href="${editUrl} "><span class="glyphicon glyphicon-pencil" style="padding-top:60px;font-size:25px;color:blue"></span></a>&nbsp&nbsp
+<a href="${editUrl} "><span class="glyphicon glyphicon-pencil" style="padding-top:60px;font-size:25px;color:black"></span></a>&nbsp&nbsp
 
 </security:authorize>
 

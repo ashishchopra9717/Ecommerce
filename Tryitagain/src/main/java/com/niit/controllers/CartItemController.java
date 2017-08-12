@@ -142,9 +142,10 @@ public class CartItemController {
 		
 	}
 	
-	@RequestMapping("/success")
-	public String success()
+	@RequestMapping("/success{cartId}")
+	public String success(@PathVariable int cartId)
 	{
+		cartItemService.removeAllCartItem(cartId);
 		return "success";
 	} 
 	
