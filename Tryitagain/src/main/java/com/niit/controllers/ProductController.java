@@ -151,7 +151,7 @@ import com.niit.service.ProductService;
 	{
 		List<Product> products = productService.getProductByCategory(cid);
 	    model.addAttribute("products",products);
-		 return "productlist";
+	    return "redirect:/getallproducts";
 	}
    
    @RequestMapping("/searchproduct")
@@ -161,7 +161,7 @@ import com.niit.service.ProductService;
 		model.addAttribute("products",products);
 		 
 		 model.addAttribute("searchCondition",SearchKeyword);		
-	     return "productlist";
+		 return "redirect:/getallproducts";
 		 
 	}
 	
