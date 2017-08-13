@@ -39,6 +39,14 @@ public class CartItemController {
 		
 		Product product =  productService.getProductById(id);
 		
+		int availableunits=product.getQuantity();
+		
+		if(availableunits<units)
+		{
+			model.addAttribute("quantityless",true);
+			return "redirect:/viewproduct{id}";
+		}
+		
 		
 		// To get User(logged in) Details , get Principal   object  from securitycontextholder
 		
