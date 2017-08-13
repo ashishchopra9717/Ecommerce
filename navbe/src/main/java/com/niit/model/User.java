@@ -19,12 +19,12 @@ public class User {
 
 	@NotEmpty
 	@Column(unique = true, nullable = false)
-	@Pattern(regexp="{A-Za-z0-9}",message="Username cannot contain special characters")
+	@Pattern(regexp="^[A-Za-z0-9]*",message="Username cannot contain special characters")
 	@Size(max=8,min=6,message="Username should have 6 to 8 characters")
 	private String username;
 
 	@NotEmpty
-	@Size(min=6,max=8,message="Password should have 6 to 8 characters")
+	@Size(min=8,max=10,message="Password should have 8 to 10 characters")
 	private String password;
 	
 	private Boolean enabled;

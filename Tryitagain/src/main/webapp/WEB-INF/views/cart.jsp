@@ -11,6 +11,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:forEach items="${cartItems}" var="cartItem">
+<c:set var="totalitems" value="${cartItem.quantity + totalitems}">
+</c:set>
+</c:forEach>
+
+<c:if test="${totalitems!=null}">
 <div class="panel panel-warning" style="height: 545px; width: 1050px; margin:auto">
 
 		<div class="panel-body" style="background:#e8f3f8">
@@ -59,5 +65,16 @@
 <p style="font-size:30px">Total Price:${grandTotal}</p>
 </div>
 </div>
+</c:if>
+<c:if test="${totalitems==null}">
+<div class="panel">
+<div class="panel panel-heading">
+<h2>Shopping Cart</h2></div>
+<div class="panel panel-body">
+<h1>Your Shopping Cart Is Empty</h1>
+<a href="getallproducts" class="btn btn-primary" style="height: 50px; width: 30%; margin-left: 375px; background-color: #fb641b; font-size: 18px;">CONTINUE SHOPPING</a>
+</div>
+</div>
+</c:if>
 </body>
 </html>

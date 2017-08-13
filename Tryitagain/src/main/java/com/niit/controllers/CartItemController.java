@@ -145,6 +145,38 @@ public class CartItemController {
 	@RequestMapping("/success{cartId}")
 	public String success(@PathVariable int cartId)
 	{
+		int qty=0;
+		int prodId=0;
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		String username =  user.getUsername();
+	   
+		Customer customer = customerService.getCustomerByUsername(username);
+		
+		Cart cart = customer.getCart();
+		
+		List<CartItem> cartItems = cart.getCartItems();
+	
+		for (CartItem cartItem : cartItems)
+		{
+			qty=cartItem.getQuantity();
+			Product product= cartItem.getProduct();
+			int ProductQuantity=product.getQuantity();
+			
+			if(qty==ProductQuantity)
+			{
+				product.setQuantity(0);
+			}
+            
+			if(qty!=ProductQuantity)
+			{
+			product.setQuantity(ProductQuantity - qty);
+			}
+			
+			productService.updateProduct(product);
+
+		}
+		
 		cartItemService.removeAllCartItem(cartId);
 		return "success";
 	} 

@@ -22,19 +22,19 @@ public class Customer {
 
 	private int id;
 	@NotEmpty(message="Firstname is mandatory")
-	@Pattern(regexp="{A-Za-z}",message="Name cannot contain numbers")
+	@Pattern(regexp="^[A-Za-z]*",message="Name cannot contain numbers")
 	private String firstname;
 	
 	@NotEmpty(message="Lastname is mandatory")
-	@Pattern(regexp="{A-Za-z}",message="Name cannot contain numbers")
+	@Pattern(regexp="^[A-Za-z]*",message="Name cannot contain numbers")
 	private String lastname;
 	
 	@Column(unique=true , nullable=false)
 	@Email
 	private String email;
 	@NotEmpty(message="Mobile Number is mandatory")
-	@Pattern(regexp="{7,8,9}{0-9}(9)",message="Mobile Number can only contain numbers")
-	@Size(max=10,min=10,message="Please enter a Valid Mobile Number")
+	@Pattern(regexp="^[7-9][0-9]{9}$",message="Mobile Number can only contain numbers")
+	@Size(max=10,min=10,message="Please enter a 10 digit Mobile Number")
 	private String phone;
 	
 	@OneToOne(cascade=CascadeType.ALL)

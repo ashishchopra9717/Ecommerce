@@ -19,27 +19,27 @@ public class BillingAddress
 	private int id;
 	
 	@NotEmpty(message="Street Name is mandatory")
-	@Pattern(regexp="{A-Za-z}",message="Street name cannot contain numbers")
+	@Pattern(regexp="^[A-Za-z]*",message="Street name cannot contain numbers")
 	private String streetname;
 	
 	@NotEmpty(message="Apartment Number is mandatory")
-	@Pattern(regexp="{0-9}",message="Apartment Number can only contain numbers")
+	@Pattern(regexp="^[0-9]*",message="Apartment Number can only contain numbers")
 	private String apartmentnumber;
 	
 	@NotEmpty(message="City is mandatory")
-	@Pattern(regexp="{A-Za-z}",message="City name cannot contain numbers")
+	@Pattern(regexp="^[A-Za-z]*",message="City name cannot contain numbers")
 	private String city;
 	
 	@NotEmpty(message="State is mandatory")
-	@Pattern(regexp="{A-Za-z}",message="State name cannot contain numbers")
+	@Pattern(regexp="^[A-Za-z]*",message="State name cannot contain numbers")
 	private String state;
 	
 	@NotEmpty(message="Country is mandatory")
-	@Pattern(regexp="{A-Za-z}",message="Country name cannot contain numbers")
+	@Pattern(regexp="^[A-Za-z]*",message="Country name cannot contain numbers")
 	private String country;
 	
 	@NotEmpty(message="Zipcode is mandatory")
-	@Pattern(regexp="{0-9}",message="Zipcode can only contain numbers")
+	@Pattern(regexp="^[0-9]*",message="Zipcode can only contain numbers")
 	@Size(max=6,min=6,message="Zipcode should be of 6 numbers")
 	private String zipcode;
 

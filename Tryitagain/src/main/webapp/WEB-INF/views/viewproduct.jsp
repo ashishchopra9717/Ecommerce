@@ -10,7 +10,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Insert title here</title>
+<title>View Product</title>
 </head>
 <body>
 <div class="panel panel-primary" style="height: 545px; width: 750px; margin:auto">
@@ -46,8 +46,10 @@
 <security:authorize access="hasRole('ROLE_USER')">
 <strong>Enter Units</strong><input  type="text" name="units"><br>
 
-<button class="btn btn-primary" style="margin-left:500px ;margin-top:40px" type="submit" >
+
+<button class="btn btn-primary" style="margin-left:500px ;margin-top:20px" type="submit" >
 <i class="glyphicon glyphicon-shopping-cart" style="height: 22px; width: 129px">Add To Cart</i></button>
+
 </form>
 </security:authorize>
 </c:if>
