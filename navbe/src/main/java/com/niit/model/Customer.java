@@ -33,7 +33,7 @@ public class Customer {
 	@Email
 	private String email;
 	@NotEmpty(message="Mobile Number is mandatory")
-	@Pattern(regexp="^[7-9][0-9]{9}$",message="Mobile Number can only contain numbers")
+	@Pattern(regexp="^[7-9][0-9]{9}$",message="Mobile Number can only contain numbers and must start with 7,8 or 9")
 	@Size(max=10,min=10,message="Please enter a 10 digit Mobile Number")
 	private String phone;
 	

@@ -22,7 +22,7 @@ private int id;
 private String productName;
 @Min(value=50)
 private int price;
-@Min(value=1)
+
 private int quantity;
 @NotEmpty(message="Required field needs to be filled")
 private String description;

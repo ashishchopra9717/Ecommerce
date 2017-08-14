@@ -18,7 +18,7 @@
 <label><b>Enter Username</b></label> 
  <input type="text" name="j_username" placeholder="User Name" style="height:100; margin-top:20px;margin-left:10px"><br><br><br>
 
-<label><b>Enter Username</b></label>
+<label><b>Enter Password</b></label>
 <input type="password" name="j_password" placeholder="Password" style="height:100;margin-left:10px"><br><br><br>
 
 <input type="checkbox" checked="checked">Remember Me

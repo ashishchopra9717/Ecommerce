@@ -36,6 +36,8 @@
 </tr>
 </table>
 <c:if test="${product.quantity==0 }">
+<br>
+<br>
 <strong>Out Of Stock</strong>
 </c:if>
 

@@ -62,7 +62,7 @@
 </c:forEach>
 
 </table>
-<p style="font-size:30px">Total Price:${grandTotal}</p>
+<p style="font-size:30px">Total Price:Rs.${grandTotal}</p>
 </div>
 </div>
 </c:if>

@@ -45,6 +45,12 @@ import com.niit.service.ProductService;
 
 	public String SaveProduct(@Valid @ModelAttribute(name="product") Product product,BindingResult result,Model model)
 	{
+		if(product.getQuantity()==0)
+		{
+			List<Category> categories=productService.getAllCategories();
+			   model.addAttribute("categories",categories);
+			return "productform";
+		}
 		if(result.hasErrors())
 			{
 			List<Category> categories=productService.getAllCategories();
@@ -150,18 +156,18 @@ import com.niit.service.ProductService;
 	public String selectByCategory(@PathVariable int cid,Model model)
 	{
 		List<Product> products = productService.getProductByCategory(cid);
-	    model.addAttribute("products",products);
-	    return "redirect:/getallproducts";
+	    model.addAttribute("product",products);
+	    return "productlist";
 	}
    
    @RequestMapping("/searchproduct")
 	public String searchProduct(@RequestParam String SearchKeyword,Model model)
 	{
 		List <Product> products =productService.getAllProducts();
-		model.addAttribute("products",products);
+		model.addAttribute("product",products);
 		 
 		 model.addAttribute("searchCondition",SearchKeyword);		
-		 return "redirect:/getallproducts";
+		 return "productlist";
 		 
 	}
 	

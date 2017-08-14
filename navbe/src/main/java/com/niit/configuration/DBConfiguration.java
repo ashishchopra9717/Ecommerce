@@ -32,7 +32,7 @@ public class DBConfiguration {
 
 		datasource.setDriverClassName("org.h2.Driver");
 
-		datasource.setUrl("jdbc:h2:tcp://localhost/~/test");
+		datasource.setUrl("jdbc:h2:tcp://localhost/~/test2");
 
 		datasource.setUsername("sa");
 

@@ -30,7 +30,7 @@
 
 <div class="form-group">
 <form:label path="user.password">Enter Password</form:label>
-<form:input type="password" pattern="(?=.*\d)(?=>*[a-z])(?=.*[A-Z]).{8}" title="Must Contain at least one number and one uppercase and lowercase letter and at least 8 or more characters" path="user.password"/><br>
+<form:input type="password" pattern="(?=.*[a-z])(?=.*[A-Z]){8}" title="Must Contain at least one uppercase and lowercase letter and at least 8 or more characters" path="user.password"/><br>
 <form:errors path="user.password" cssStyle="color:red"></form:errors>
 </div>
 
